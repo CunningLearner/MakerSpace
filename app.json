@@ -1,6 +1,6 @@
 {
-  "name": "API.AI webhook demonstration",
-  "description": "API.AI webhook demonstration",
+  "name": "MakerSpace",
+  "description": "MakerSpace's central controlling hub",
   "repository": "https://github.com/CunningLearner/MakerSpace",
   "logo": "http://xvir.github.io/img/apiai.png",
   "keywords": ["api.ai", "natural language"]
