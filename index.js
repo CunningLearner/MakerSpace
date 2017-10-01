@@ -48,6 +48,12 @@ restService.post('/hookbin', function (req, res) {
                     speech += requestBody.result.fulfillment.speech;
                     speech += ' ';
                 }
+		    if (requestBody.result.resolvedQuery) {
+                    speech += requestBody.result.resolvedQuery;
+                    //speech += ' ';
+		    client.publish('apiai/Smartbin/ireading', speech)
+                }
+		   
 
                 if (requestBody.result.action) {
                     speech += 'action: ' + requestBody.result.action;
@@ -56,7 +62,7 @@ restService.post('/hookbin', function (req, res) {
         }
 
         console.log('result: ', speech);
-		client.publish('apiai/Smartbin/ireading', speech)
+		//client.publish('apiai/Smartbin/ireading', speech)
 		//console.log("rest in peace")
 		fs.readFile('status','utf8', function(err, contents) {
 					console.log("The content of the file"+contents);
