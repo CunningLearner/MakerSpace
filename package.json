@@ -1,5 +1,5 @@
 {
-  "name": "apiaiwebhook",
+  "name": "MakerSpace",
   "version": "1.0.0",
   "description": "Webhook interacting with sensors in IOT ecosystem",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Gaurav Sharma aka IOTmagician <gs99100@gmail.com> (https://api.ai)",
+  "author": "Himanshu Sahdev aka Cunning Learner <sahdev.himan@gmail.com> (https://api.ai)",
   "license": "Apache 2.0",
   "dependencies": {
     "body-parser": "^1.15.0",
