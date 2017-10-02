@@ -59,9 +59,9 @@ restService.post('/hookbin', function (req, res) {
                     speech += ' ';
                 }
 		    if (requestBody.result.resolvedQuery) {
-                    speech = requestBody.result.resolvedQuery;
+                    speech += requestBody.result.resolvedQuery;
 		    client.publish('apiai/Smartbin/ireading', speech)
-		    speech = '';
+		    speech += ' ';
                 }
 		   
 
