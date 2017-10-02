@@ -11,7 +11,7 @@ var client = mqtt.connect('mqtt://www.mosquitto.org', {username:'himanshu', pass
 
 
 client.subscribe('apiai/Smartbin/status')
-// client.subscribe('apiai/Smartbin/open')
+client.subscribe('apiai/Smartbin/open')
 
 client.on('message', function (topic, message) {
   // message is Buffer 
@@ -19,6 +19,16 @@ client.on('message', function (topic, message) {
   var status_read = message.toString()
   console.log(message.toString())
   fs.writeFile("status", status_read, function(err) {
+    if(err) {
+        return console.log(err);
+    }
+//console.log("The file was saved!");
+});
+}
+	  if (topic == 'apiai/Smartbin/open') {
+  var open_read = message.toString()
+  console.log(message.toString())
+  fs.writeFile("open", open_read, function(err) {
     if(err) {
         return console.log(err);
     }
@@ -64,16 +74,33 @@ restService.post('/hookbin', function (req, res) {
         console.log('result: ', speech);
 		//client.publish('apiai/Smartbin/ireading', speech)
 		//console.log("rest in peace")
-		fs.readFile('status','utf8', function(err, contents) {
+switch(requestBody.result.resolvedQuery){
+		    case "let me know the amount of litter present":
+		        fs.readFile('status','utf8', function(err, contents) {
 					console.log("The content of the file"+contents);
-//});
-		var sread = contents
-        return res.json({
-            speech: sread,
-            displayText:sread,
-            source: 'apiai-webhook-IOTecosystem'
-        });
-        });
+			var sread = contents
+      		    	return res.json({
+            			speech: sread,
+            			displayText:sread,
+            			source: 'apiai-webhook-IOTecosystem'
+        				});
+        		});
+        		break;
+    		    case "open your mouth bin":
+        		fs.readFile('open','utf8', function(err, contents) {
+					console.log("The content of the file"+contents);
+			var sread = contents
+      		    	return res.json({
+            			speech: sread,
+            			displayText:sread,
+            			source: 'apiai-webhook-IOTecosystem'
+        				});
+        		});
+        		break;
+    		    default:
+        		"."
+		
+}
     } catch (err) {
         console.error("Can't process request", err);
 
